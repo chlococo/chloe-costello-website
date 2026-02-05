@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work — Chloe Costello</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: rgb(235, 232, 223);
+            --text: #2b2622;
+            --accent: #8b7355;
+            --light-accent: #c4b5a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Instrument Serif', serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--bg);
+            padding: 2rem 3rem;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .logo {
+            font-style: italic;
+            font-family: 'Instrument Serif', serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            color: var(--text);
+            text-decoration: none;
+            opacity: 0.7;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            list-style: none;
+            align-items: flex-end;
+        }
+
+        .nav-links a {
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0.7;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a.active {
+            opacity: 1;
+        }
+
+        .nav-links:hover a {
+            opacity: 0.3;
+            font-size: 0.65rem;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            font-size: 0.85rem;
+        }
+
+        /* Work Section */
+        .work-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 10rem 3rem 5rem;
+            min-height: calc(100vh - 200px);
+        }
+
+        .page-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            margin-bottom: 5rem;
+            text-align: center;
+            color: var(--text);
+            font-style: italic;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .page-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 3rem;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, var(--light-accent) 0%, var(--accent) 100%);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence baseFrequency="0.8" numOctaves="4" /></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.03"/></svg>');
+        }
+
+        .project-year {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: 1rem;
+            font-weight: 400;
+            opacity: 0.6;
+        }
+
+        .project-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            letter-spacing: 0.01em;
+        }
+
+        .project-card p {
+            font-size: 0.75rem;
+            line-height: 1.8;
+            color: var(--text);
+            font-weight: 300;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0;
+            align-items: center;
+        }
+
+        .social-icon {
+            width: 16px;
+            height: 16px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            color: var(--text);
+        }
+
+        .social-icon:hover {
+            opacity: 1;
+        }
+
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            nav,
+            .work-section {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .work-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .project-card {
+                padding: 2rem;
+            }
+
+            .project-card h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Chloe Costello</a>
+            <ul class="nav-links">
+                <li><a href="work.html" >Work</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Work Section -->
+    <section class="work-section">
+        <h1 class="page-title">Selected Work</h1>
+        
+        <div class="work-grid">
+            <div class="project-card">
+                <div class="project-image"></div>
+                <p class="project-year">2024–2025</p>
+                <h3>Navigation, PLP & PDP Redesign</h3>
+                <p>Led comprehensive redesign of core shopping experiences across navigation architecture, product listing pages, and product detail pages. Reimagined the end-to-end customer journey to improve discoverability, conversion, and overall site usability while maintaining brand authenticity and premium positioning.</p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image"></div>
+                <p class="project-year">2024</p>
+                <h3>Sustainability Attributions</h3>
+                <p>Introduced transparent sustainability and traceability features throughout the digital experience. Delivered product detail page enhancements, search integration, and quick shop functionality that communicate material sourcing, environmental impact, and responsible manufacturing practices—empowering conscious purchasing decisions.</p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image"></div>
+                <p class="project-year">2024</p>
+                <h3>Systemic Attribution & PDH</h3>
+                <p>End-to-end launch of Product Data Hub automation with new attribution experiences spanning PDPs, PLPs, design product IDs, search, and quick shop. Established scalable infrastructure for dynamic product information management, enabling real-time updates and enhanced merchandising flexibility across all digital touchpoints.</p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image"></div>
+                <p class="project-year">2024–2025</p>
+                <h3>Dynamic Size Charts</h3>
+                <p>Developed intelligent size chart system that displays actual garment measurements sourced directly from product data. Reduced fit uncertainty and returns while improving customer confidence through accurate, product-specific sizing guidance that adapts to inventory and regional standards.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="mailto:Chloeraecostello@gmail.com">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/in/chloeraecostello" target="_blank">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll fade-in
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.page-title, .project-card').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

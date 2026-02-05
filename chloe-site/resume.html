@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume — Chloe Costello</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: rgb(235, 232, 223);
+            --text: #2b2622;
+            --accent: #8b7355;
+            --light-accent: #c4b5a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Instrument Serif', serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--bg);
+            padding: 2rem 3rem;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .logo {
+            font-style: italic;
+            font-family: 'Instrument Serif', serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            color: var(--text);
+            text-decoration: none;
+            opacity: 0.7;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            list-style: none;
+            align-items: flex-end;
+        }
+
+        .nav-links a {
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0.7;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a.active {
+            opacity: 1;
+        }
+
+        .nav-links:hover a {
+            opacity: 0.3;
+            font-size: 0.65rem;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            font-size: 0.85rem;
+        }
+
+        .resume-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10rem 3rem 5rem;
+        }
+
+        .page-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            margin-bottom: 5rem;
+            text-align: center;
+            color: var(--text);
+            font-style: italic;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .page-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease 0.2s, transform 1s ease 0.2s;
+        }
+
+        .resume-grid.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .resume-sidebar .section {
+            margin-bottom: 3rem;
+        }
+
+        .resume-sidebar h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            letter-spacing: 0.02em;
+        }
+
+        .resume-sidebar .label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: 1rem;
+            opacity: 0.6;
+        }
+
+        .resume-sidebar ul {
+            list-style: none;
+            font-size: 0.7rem;
+            line-height: 1.8;
+            color: var(--text);
+            font-weight: 300;
+        }
+
+        .resume-sidebar li {
+            margin-bottom: 0.4rem;
+        }
+
+        .contact-info {
+            font-size: 0.7rem;
+            line-height: 1.8;
+            color: var(--text);
+            font-weight: 300;
+        }
+
+        .contact-info a {
+            color: var(--text);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            opacity: 0.6;
+        }
+
+        .experience-item {
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(43, 38, 34, 0.1);
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .experience-header h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.01em;
+        }
+
+        .experience-meta {
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text);
+            font-weight: 400;
+            margin-bottom: 2rem;
+            opacity: 0.6;
+        }
+
+        .experience-description {
+            font-size: 0.75rem;
+            line-height: 1.8;
+            color: var(--text);
+            font-weight: 300;
+        }
+
+        .experience-description ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .experience-description li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .experience-description li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--text);
+            opacity: 0.4;
+        }
+
+        footer {
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0;
+            align-items: center;
+        }
+
+        .social-icon {
+            width: 16px;
+            height: 16px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            color: var(--text);
+        }
+
+        .social-icon:hover {
+            opacity: 1;
+        }
+
+
+        @media (max-width: 968px) {
+            nav,
+            .resume-section {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .resume-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .experience-header h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Chloe Costello</a>
+            <ul class="nav-links">
+                <li><a href="work.html">Work</a></li>
+                <li><a href="resume.html" >Resume</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="resume-section">
+        <h1 class="page-title">Resume</h1>
+        
+        <div class="resume-grid">
+            <div class="resume-sidebar">
+                <div class="section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <a href="mailto:Chloeraecostello@gmail.com">Chloeraecostello@gmail.com</a><br>
+                        <a href="https://linkedin.com/in/chloeraecostello" target="_blank">LinkedIn Profile</a><br>
+                        865-293-6398<br>
+                        New York, NY
+                    </div>
+                </div>
+
+                <div class="section">
+                    <p class="label">Skills</p>
+                    <ul>
+                        <li>Digital Strategy</li>
+                        <li>Ecommerce</li>
+                        <li>Customer Experience</li>
+                        <li>Product Management</li>
+                        <li>Technology Roadmapping</li>
+                        <li>Merchandising & Web Ops</li>
+                        <li>Strategic Analysis</li>
+                        <li>Executive Communication</li>
+                        <li>Performance Analysis</li>
+                        <li>People Leadership</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <p class="label">Focus Areas</p>
+                    <ul>
+                        <li>Omnichannel Initiatives</li>
+                        <li>Site Personalization</li>
+                        <li>A/B Testing & Optimization</li>
+                        <li>Sustainability Features</li>
+                        <li>Journey Redesigns</li>
+                        <li>Customer Service Tools</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <p class="label">Education</p>
+                    <ul>
+                        <li>East Tennessee State University</li>
+                        <li>B.B.A in Marketing</li>
+                        <li>Merchandising Focus</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="resume-main">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Ralph Lauren</h3>
+                        <p class="experience-meta">Senior Manager, Product Management Customer Experience · 2019–Present</p>
+                    </div>
+                    <div class="experience-description">
+                        <ul>
+                            <li>Responsible for driving the North America Ecommerce Customer Experience strategy and roadmap, including prioritization, delivery, and performance across all digital touchpoints, to drive measurable customer and commercial impact against defined success metrics.</li>
+                            <li>Accountable for initiating and leading strategic initiatives that enable the Ecommerce business, including customer experiences and user journeys as well as internal tool enhancements and capabilities that support scalable growth and operational excellence.</li>
+                            <li>Act as the voice of the North America consumer, synthesizing deep customer insights, competitive intelligence, analytics, and industry trends into disciplined prioritization decisions across large features, experience enhancements, and journey improvements.</li>
+                            <li>Foster a culture of coaching, continuous feedback and accountability through clear expectations, regular performance conversations, and intentional development of my team.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Coach</h3>
+                        <p class="experience-meta">Associate Manager, Web Production · 2017–2019</p>
+                    </div>
+                    <div class="experience-description">
+                        <ul>
+                            <li>Led ongoing site enhancements, defect resolution, and roadmap reviews for Coach Outlet, partnering closely with Product, Technology, and key business stakeholders to support platform stability and incremental customer experience improvements.</li>
+                            <li>Managed end‑to‑end delivery of digital initiatives for Coach Outlet, including Refer‑a‑Friend, Buy Online Pick Up In Store (BOPIS), Customization/Monogramming, store‑fill inventory workflows, SMS capture, and continuous A/B testing programs.</li>
+                            <li>Played a key role in the replatforming of Coach Outlet to Salesforce Commerce Cloud by developing detailed business and functional requirements, coordinating QA test scenarios and schedules, leading partner and internal training sessions, and managing project timelines.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Kate Spade</h3>
+                        <p class="experience-meta">Associate Manager, Ecommerce · 2017</p>
+                    </div>
+                    <div class="experience-description">
+                        <ul>
+                            <li>Managed day‑to‑day Ecommerce operations, overseeing site launches, merchandising execution, competitive research, and performance reporting to support commercial goals and operational consistency.</li>
+                            <li>Owned the promotional and campaign calendar, executing homepage updates, promotional events, site copy, email campaigns, QA processes, and promo code configuration to ensure timely and accurate launches.</li>
+                            <li>Led user experience and site optimization initiatives, including SEO‑optimized navigation, enhanced category page layouts, third‑party tool integrations, and the introduction of improved on‑site search functionality.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Avon</h3>
+                        <p class="experience-meta">Assistant Manager, Ecommerce · 2015–2017</p>
+                    </div>
+                    <div class="experience-description">
+                        <p>Early career experience managing ecommerce operations and digital merchandising for a global beauty brand.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="mailto:Chloeraecostello@gmail.com">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/in/chloeraecostello" target="_blank">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.page-title, .resume-grid').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

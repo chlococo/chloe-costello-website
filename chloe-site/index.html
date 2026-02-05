@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chloe Costello</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: rgb(235, 232, 223);
+            --text: #2b2622;
+            --accent: #8b7355;
+            --light-accent: #c4b5a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--bg);
+            padding: 2rem 3rem;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .logo {
+            font-family: 'Instrument Serif', serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: 0.05em;
+            color: var(--text);
+            text-decoration: none;
+            opacity: 0.7;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            list-style: none;
+            align-items: flex-end;
+        }
+
+        .nav-links a {
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0.7;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a.active {
+            opacity: 1;
+        }
+
+        .nav-links:hover a {
+            opacity: 0.3;
+            font-size: 0.65rem;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            font-size: 0.85rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 12rem 3rem 8rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .hero.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-subtitle {
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            opacity: 0.6;
+        }
+
+        .hero-title {
+            font-family: 'Instrument Serif', serif;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 0.85;
+            margin-bottom: 0;
+            color: var(--text);
+            font-style: italic;
+        }
+
+        .hero-title .greeting {
+            font-size: 3.5rem;
+            display: block;
+        }
+
+        .hero-title .name {
+            font-size: 9rem;
+            display: block;
+        }
+
+        .hero-text {
+            font-size: 1rem;
+            line-height: 1.9;
+            font-weight: 400;
+            color: var(--text);
+            max-width: 800px;
+            letter-spacing: 0.01em;
+        }
+
+        .current-role {
+            margin-top: 2rem;
+        }
+
+        .current-role .role-title {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+        }
+
+        .current-role .company {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .social-icon {
+            width: 16px;
+            height: 16px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            color: var(--text);
+        }
+
+        .social-icon:hover {
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            nav,
+            .hero {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .hero-title .greeting {
+                font-size: 2.5rem;
+            }
+
+            .hero-title .name {
+                font-size: 6rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            nav,
+            .hero {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .nav-links {
+                gap: 0.6rem;
+            }
+
+            .hero-title .greeting {
+                font-size: 1.8rem;
+            }
+
+            .hero-title .name {
+                font-size: 4rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.7rem;
+            }
+
+            .hero-text {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Chloe Costello</a>
+            <ul class="nav-links">
+                <li><a href="work.html">Work</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1 class="hero-title">
+            <span class="greeting">Nice to meet you,</span>
+            <span class="name">I'm Chloe.</span>
+        </h1>
+        <p class="hero-subtitle">Digital Ecommerce Leader</p>
+        <p class="hero-text">
+            Accomplished digital leader focused on elevating online shopping experiences through customer‑centric design, emerging technology and data‑driven execution. Passionate about developing intuitive, unique customer experiences and digital solutions both competitive and innovative while remaining authentic. Perceptive and resourceful, translating vision into actionable roadmaps and measurable business outcomes. I bridge the gap between business and technology to drive stakeholder alignment, accelerate project progression and deliver scalable digital experiences that meet evolving customer expectations and fuel sustainable growth.
+            <span class="current-role"> <span class="role-title">Current role: Senior Manager, Customer Experience Product Management</span> <span class="company">at Ralph Lauren</span></span>
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="mailto:Chloeraecostello@gmail.com">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/in/chloeraecostello" target="_blank">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll fade-in
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.hero').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
